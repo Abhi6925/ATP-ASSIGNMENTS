@@ -34,4 +34,4 @@ This is a full stack web application to manage and read blog posts. I built this
 
 ## Links
 - **Frontend**: https://frontend-eta-six-29.vercel.app
-- **Backend API**: https://backend-coral-two-89.vercel.app
+
