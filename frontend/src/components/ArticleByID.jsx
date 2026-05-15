@@ -1,6 +1,6 @@
 import { useParams, useLocation, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { useAuth } from "../store/authStore";
 import {
   articlePageWrapper,
@@ -50,10 +50,7 @@ function ArticleByID() {
       setLoading(true);
 
       try {
-        const res = await axios.get(
-          `https://backend-coral-two-89.vercel.app/user-api/article/${id}`,
-          { withCredentials: true },
-        );
+        const res = await api.get(`/user-api/article/${id}`);
 
         setArticle(res.data.payload);
       } catch (err) {
@@ -84,11 +81,10 @@ function ArticleByID() {
     if (!window.confirm(confirmMsg)) return;
 
     try {
-      const res = await axios.patch(
-        "https://backend-coral-two-89.vercel.app/author-api/articles",
-        { articleId: article._id, isArticleActive: newStatus },
-        { withCredentials: true },
-      );
+      const res = await api.patch("/author-api/articles", {
+        articleId: article._id,
+        isArticleActive: newStatus,
+      });
 
       console.log("SUCCESS:", res.data);
 
@@ -119,11 +115,7 @@ function ArticleByID() {
     //add artcileId
     commentObj.articleId = article._id;
     console.log(commentObj);
-    let res = await axios.put(
-      "https://backend-coral-two-89.vercel.app/user-api/articles",
-      commentObj,
-      { withCredentials: true },
-    );
+    let res = await api.put("/user-api/articles", commentObj);
     if (res.status === 200) {
       setArticle(res.data.payload);
     }

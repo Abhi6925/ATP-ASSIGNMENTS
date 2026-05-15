@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { useNavigate } from "react-router";
 import { useAuth } from "../store/authStore";
 
@@ -33,10 +33,7 @@ function AuthorArticles() {
       try {
         setLoading(true);
         //read articles of current author
-        let res = await axios.get(
-          "https://backend-coral-two-89.vercel.app/author-api/articles",
-          { withCredentials: true },
-        );
+        let res = await api.get("/author-api/articles");
         if (res.status === 200) {
           setArticles(res.data.payload);
         }

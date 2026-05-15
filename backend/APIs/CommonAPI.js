@@ -30,7 +30,7 @@ commonApp.post(
       }
 
       //Upload image to cloudinary from memoryStorage
-      if (req.file && process.env.API_KEY) {
+      if (req.file && process.env.CLOUDINARY_API_KEY) {
         cloudinaryResult = await uploadToCloudinary(req.file.buffer);
       }
 
@@ -69,13 +69,13 @@ commonApp.post("/login", async (req, res) => {
   const user = await UserModel.findOne({ email: email });
   //if use not found
   if (!user) {
-    return res.status(400).json({ message: "Invalid email" });
+    return res.status(400).json({ error: "Invalid email or user not found" });
   }
   //compare password
   const isMatched = await compare(password, user.password);
   //if passwords not matched
   if (!isMatched) {
-    return res.status(400).json({ message: "Invalid password" });
+    return res.status(400).json({ error: "Invalid password" });
   }
   //create jwt
   const signedToken = sign(

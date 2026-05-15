@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { NavLink } from "react-router";
 
 function Articles() {
@@ -11,10 +11,7 @@ function Articles() {
       try {
         setLoading(true);
         // Use deployed backend URL
-        const res = await axios.get(
-          "https://backend-coral-two-89.vercel.app/user-api/articles",
-          { withCredentials: true },
-        );
+        const res = await api.get("/user-api/articles");
         if (res.status === 200) {
           setArticles(res.data.payload);
         }

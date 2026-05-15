@@ -33,5 +33,5 @@ This is a full stack web application to manage and read blog posts. I built this
 3. Run `npm run dev` to start the application locally.
 
 ## Links
-- **Frontend**: https://atp-week-7-blog-app-main.vercel.app
-- **Backend API**: https://atp-week-7-blog-app-main.vercel.app
+- **Frontend**: https://frontend-eta-six-29.vercel.app
+- **Backend API**: https://backend-coral-two-89.vercel.app

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
 
@@ -38,11 +38,7 @@ function WriteArticles() {
       //set loading true
       setLoading(true);
       //make POST req to save new article
-      let res = await axios.post(
-        "https://backend-coral-two-89.vercel.app/author-api/article",
-        articleObj,
-        { withCredentials: true },
-      );
+      let res = await api.post("/author-api/article", articleObj);
       //navigate to AuthorArticles
       if (res.status === 201) {
         toast.success("Article published successfully");

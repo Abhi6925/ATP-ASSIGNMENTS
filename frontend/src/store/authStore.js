@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios from "axios";
+import api from "../api/axios";
 
 export const useAuth = create((set) => ({
   currentUser: null,
@@ -17,11 +17,7 @@ export const useAuth = create((set) => ({
         error: null,
       });
       //make api call
-      let res = await axios.post(
-        "https://backend-coral-two-89.vercel.app/auth/login",
-        userCred,
-        { withCredentials: true },
-      );
+      let res = await api.post("/auth/login", userCred);
       //update state
       if (res.status === 200) {
         set({
@@ -46,10 +42,7 @@ export const useAuth = create((set) => ({
     try {
       //set loading state
       //make logout api req
-      let res = await axios.get(
-        "https://backend-coral-two-89.vercel.app/auth/logout",
-        { withCredentials: true },
-      );
+      let res = await api.get("/auth/logout");
       //update state
       if (res.status === 200) {
         set({
@@ -72,10 +65,7 @@ export const useAuth = create((set) => ({
   checkAuth: async () => {
     try {
       set({ loading: true });
-      const res = await axios.get(
-        "https://backend-coral-two-89.vercel.app/auth/check-auth",
-        { withCredentials: true },
-      );
+      const res = await api.get("/auth/check-auth");
 
       set({
         currentUser: res.data.payload,
