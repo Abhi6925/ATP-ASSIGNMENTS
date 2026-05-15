@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "env": {
+    "DB_URL": "mongodb+srv://dhairya:dhairya_041@cluster0.fij6bmw.mongodb.net/blogApp?retryWrites=true&w=majority&appName=Cluster0",
+    "FRONTEND_URL": "https://frontend-eta-six-29.vercel.app",
+    "SECRET_KEY": "blog_secret_key_12345"
+  },
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}
